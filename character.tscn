@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bod0wdiq6dj1h"]
+
+[ext_resource type="Script" uid="uid://cg3qlic7n3do8" path="res://character.gd" id="1_pjt0s"]
+[ext_resource type="Texture2D" uid="uid://cq8fp827yp5f4" path="res://asset/kenney_top-down-shooter/PNG/Survivor 1/survivor1_machine.png" id="2_wa5vi"]
+[ext_resource type="PackedScene" uid="uid://dqjf2fs6v1ed4" path="res://bullet.tscn" id="2_wfnr8"]
+[ext_resource type="Script" uid="uid://ua6bq6n2g6mg" path="res://camera_2d.gd" id="3_wa5vi"]
+[ext_resource type="AudioStream" uid="uid://by1s821axrdwo" path="res://asset/gunshot.wav" id="5_px5sl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pjt0s"]
+radius = 17.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1176821500]
+script = ExtResource("1_pjt0s")
+bullet_scene = ExtResource("2_wfnr8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=44826123]
+texture = ExtResource("2_wa5vi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=526728977]
+shape = SubResource("CircleShape2D_pjt0s")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=6688886]
+script = ExtResource("3_wa5vi")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=521396417]
+position = Vector2(23, 9)
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="." unique_id=1614194656]
+stream = ExtResource("5_px5sl")

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bod0wdiq6dj1h"]
+
+[ext_resource type="Texture2D" uid="uid://c7ob07vig16ex" path="res://asset/kenney_top-down-shooter/PNG/Survivor 1/survivor1_stand.png" id="1_glpr6"]
+[ext_resource type="Script" uid="uid://cg3qlic7n3do8" path="res://character.gd" id="1_pjt0s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pjt0s"]
+radius = 17.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1176821500]
+script = ExtResource("1_pjt0s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=44826123]
+texture = ExtResource("1_glpr6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=526728977]
+shape = SubResource("CircleShape2D_pjt0s")
