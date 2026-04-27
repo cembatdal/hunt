@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://5guu3bo5utma"]
+
+[ext_resource type="Script" uid="uid://cqwa66h8gvpnk" path="res://entities/base/entity.gd" id="1_dcn7a"]
+[ext_resource type="Script" uid="uid://t5vwv76pw8td" path="res://components/health_component.gd" id="2_y1f75"]
+
+[node name="Entity" type="CharacterBody2D" unique_id=1367122984]
+script = ExtResource("1_dcn7a")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1029197228]
+script = ExtResource("2_y1f75")

@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bod0wdiq6dj1h"]
+
+[ext_resource type="Script" uid="uid://cg3qlic7n3do8" path="res://entities/player/player.gd" id="1_pjt0s"]
+[ext_resource type="Texture2D" uid="uid://cq8fp827yp5f4" path="res://assets/kenney_top-down-shooter/PNG/Survivor 1/survivor1_machine.png" id="2_wa5vi"]
+[ext_resource type="PackedScene" uid="uid://dqjf2fs6v1ed4" path="res://weapons/projectiles/bullet.tscn" id="2_wfnr8"]
+[ext_resource type="Script" uid="uid://ua6bq6n2g6mg" path="res://entities/player/player_camera.gd" id="3_wa5vi"]
+[ext_resource type="Script" uid="uid://t5vwv76pw8td" path="res://components/health_component.gd" id="4_8fjmc"]
+[ext_resource type="AudioStream" uid="uid://by1s821axrdwo" path="res://assets/gunshot.wav" id="5_px5sl"]
+[ext_resource type="Script" uid="uid://bs0br6j2v66vj" path="res://components/hurtbox_component.gd" id="7_qiwj3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pjt0s"]
+radius = 17.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8fjmc"]
+radius = 20.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1176821500]
+script = ExtResource("1_pjt0s")
+bullet_scene = ExtResource("2_wfnr8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=44826123]
+texture = ExtResource("2_wa5vi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=526728977]
+shape = SubResource("CircleShape2D_pjt0s")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1079157706]
+script = ExtResource("4_8fjmc")
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=811194232]
+collision_layer = 2
+collision_mask = 16
+script = ExtResource("7_qiwj3")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1600153326]
+shape = SubResource("CircleShape2D_8fjmc")
+
+[node name="WeaponHolder" type="Node2D" parent="." unique_id=200972790]
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=521396417]
+position = Vector2(23, 9)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=6688886]
+script = ExtResource("3_wa5vi")
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="." unique_id=1614194656]
+stream = ExtResource("5_px5sl")

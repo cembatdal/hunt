@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dd76q13sal05q"]
+
+[node name="World" type="Node2D" unique_id=98959595]
+
+[node name="MapContainer" type="Node2D" parent="." unique_id=293803169]
+
+[node name="EntitiesContainer" type="Node2D" parent="." unique_id=1209797353]
