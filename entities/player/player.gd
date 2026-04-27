@@ -2,7 +2,6 @@ class_name Player
 extends Entity
 
 @export var speed: float = 400.0
-@export var bullet_scene: PackedScene
 @export var shoot_sound: AudioStream
 
 @onready var muzzle: Marker2D = $Muzzle
@@ -12,7 +11,7 @@ extends Entity
 func _ready() -> void:
 	super._ready()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not health_component.is_alive():
 		return
 	_handle_movement()
@@ -31,13 +30,15 @@ func _handle_aim() -> void:
 	look_at(get_global_mouse_position())
 
 func fire() -> void:
-	if bullet_scene == null or not health_component.is_alive():
+	if not health_component.is_alive():
 		return
-	var bullet := bullet_scene.instantiate()
-	get_tree().current_scene.add_child(bullet)
-	bullet.global_transform = muzzle.global_transform
-	if shoot_sound:
-		AudioManager.play_sfx(shoot_sound, 0.8, 1.2)
+	if weapon_holder.get_child_count() == 0:
+		return
+	var weapon = weapon_holder.get_child(0)
+	if weapon is Weapon:
+		weapon.try_fire(muzzle.global_transform)
+		if shoot_sound:
+			AudioManager.play_sfx(shoot_sound, 0.8, 1.2)
 
 func on_death() -> void:
 	EventBus.player_died.emit()
