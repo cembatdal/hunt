@@ -3,6 +3,7 @@ extends Entity
 
 @export var speed: float = 400.0
 @export var bullet_scene: PackedScene
+@export var shoot_sound: AudioStream
 
 @onready var muzzle: Marker2D = $Muzzle
 @onready var camera: Camera2D = $Camera2D
@@ -10,8 +11,6 @@ extends Entity
 
 func _ready() -> void:
 	super._ready()
-	# Player'a özgü sinyal bağlantıları
-	EventBus.entity_died.connect(_on_entity_died)
 
 func _physics_process(delta: float) -> void:
 	if not health_component.is_alive():
@@ -37,7 +36,9 @@ func fire() -> void:
 	var bullet := bullet_scene.instantiate()
 	get_tree().current_scene.add_child(bullet)
 	bullet.global_transform = muzzle.global_transform
+	if shoot_sound:
+		AudioManager.play_sfx(shoot_sound, 0.8, 1.2)
 
-func _on_entity_died(entity: Node) -> void:
-	if entity == self:
-		EventBus.player_died.emit()
+func on_death() -> void:
+	EventBus.player_died.emit()
+	super.on_death()

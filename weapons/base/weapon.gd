@@ -3,8 +3,7 @@ extends Node2D
 
 @export var weapon_name: String = "Weapon"
 @export var damage: float = 10.0
-@export var fire_rate: float = 0.2      # Atışlar arası saniye
-@export var bullet_scene: PackedScene
+@export var fire_rate: float = 0.15      # Atışlar arası saniye
 
 var _can_fire: bool = true
 var _fire_timer: float = 0.0
@@ -21,12 +20,12 @@ func try_fire(muzzle_transform: Transform2D) -> void:
 		return
 	_can_fire = false
 	fire(muzzle_transform)
-
-func fire(muzzle_transform: Transform2D) -> void:
-	# Alt sınıflar override edebilir
-	if bullet_scene == null:
+	
+func fire() -> void:
+	if not health_component.is_alive():
 		return
-	var bullet := bullet_scene.instantiate()
-	get_tree().current_scene.add_child(bullet)
-	bullet.global_transform = muzzle_transform
-	bullet.damage = damage
+	if weapon_holder.get_child_count() == 0:
+		return
+	var weapon = weapon_holder.get_child(0)
+	if weapon is Weapon:
+		weapon.try_fire(muzzle.global_transform)

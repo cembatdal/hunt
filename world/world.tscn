@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://dd76q13sal05q"]
 
+[ext_resource type="Script" uid="uid://c2eett7p3e37d" path="res://world/world.gd" id="1_6xmxd"]
+[ext_resource type="PackedScene" uid="uid://bod0wdiq6dj1h" path="res://entities/player/player.tscn" id="2_tcf2h"]
+[ext_resource type="PackedScene" uid="uid://dnpj8tdymnyyd" path="res://world/maps/map_01.tscn" id="3_4717r"]
+
 [node name="World" type="Node2D" unique_id=98959595]
+script = ExtResource("1_6xmxd")
+player_scene = ExtResource("2_tcf2h")
+starting_map = ExtResource("3_4717r")
 
 [node name="MapContainer" type="Node2D" parent="." unique_id=293803169]
 

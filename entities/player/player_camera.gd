@@ -1,3 +1,4 @@
+class_name PlayerCamera
 extends Camera2D
 
 var max_offset = 150.0 
