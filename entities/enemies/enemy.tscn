@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c6ulbnlobgvcc"]
 
+[ext_resource type="Script" uid="uid://cs5d6cktkew5p" path="res://entities/enemies/enemy.gd" id="1_gj3y3"]
 [ext_resource type="Texture2D" uid="uid://dqjsknisbm3fo" path="res://assets/kenney_top-down-shooter/PNG/Soldier 1/soldier1_stand.png" id="1_ipr6v"]
 [ext_resource type="Script" uid="uid://t5vwv76pw8td" path="res://components/health_component.gd" id="1_owq46"]
 [ext_resource type="Script" uid="uid://bs0br6j2v66vj" path="res://components/hurtbox_component.gd" id="2_wqcwe"]
@@ -14,7 +15,8 @@ radius = 17.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_5lf1o"]
 radius = 17.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1366714868]
+[node name="Enemy" type="CharacterBody2D" unique_id=1366714868]
+script = ExtResource("1_gj3y3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1672586702]
 texture = ExtResource("1_ipr6v")

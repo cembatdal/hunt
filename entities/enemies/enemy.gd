@@ -13,13 +13,11 @@ var target: Node = null
 func _ready() -> void:
 	super._ready()
 	add_to_group("enemy")
-	# Player'ı bulmak için EventBus yerine group kullan
 	await get_tree().process_frame
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		target = players[0]
 
 func on_death() -> void:
-	EventBus.entity_died.emit(self)
 	GameManager.on_enemy_killed()
 	super.on_death()
