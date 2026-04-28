@@ -8,6 +8,7 @@ extends Area2D
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
+	body_entered.connect(_on_body_entered) # Duvarlara (Body) çarpma sinyali
 
 func _process(delta: float) -> void:
 	position += transform.x * speed * delta
@@ -17,10 +18,19 @@ func _draw() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is HurtboxComponent:
-		ObjectPool.return_object(self)
+		_destroy_bullet()
+
+func _on_body_entered(_body: Node2D) -> void:
+	# Duvara çarptığında da yok olsun
+	_destroy_bullet()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	ObjectPool.return_object(self)
+	_destroy_bullet()
+
+func _destroy_bullet() -> void:
+	# DİKKAT: call_deferred kullanarak fizik motorunun mevcut frame'deki 
+	# diğer hesaplamaları (düşmana hasar verme vb.) bitirmesini bekliyoruz.
+	ObjectPool.call_deferred("return_object", self)
 
 func reset() -> void:
 	damage = 10.0

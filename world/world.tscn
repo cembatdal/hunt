@@ -1,16 +1,15 @@
 [gd_scene format=3 uid="uid://dd76q13sal05q"]
 
 [ext_resource type="Script" uid="uid://c2eett7p3e37d" path="res://world/world.gd" id="1_6xmxd"]
+[ext_resource type="PackedScene" uid="uid://c3urr61wqgpgl" path="res://world/maps/duel_map.tscn" id="2_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://bod0wdiq6dj1h" path="res://entities/player/player.tscn" id="2_tcf2h"]
-[ext_resource type="PackedScene" uid="uid://dnpj8tdymnyyd" path="res://world/maps/map_01.tscn" id="3_4717r"]
 [ext_resource type="PackedScene" uid="uid://b1a5442n3crc5" path="res://ui/hud.tscn" id="4_h5o24"]
-[ext_resource type="Script" uid="uid://bcugmcl8gv5h6" path="res://world/spawn_manager.gd" id="5_mmdvd"]
+[ext_resource type="Script" uid="uid://i7rw608orrsc" path="res://systems/game_modes/duel_game_mode.gd" id="5_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://c6ulbnlobgvcc" path="res://entities/enemies/enemy.tscn" id="6_fn3g3"]
 
 [node name="World" type="Node2D" unique_id=98959595]
 script = ExtResource("1_6xmxd")
-player_scene = ExtResource("2_tcf2h")
-starting_map = ExtResource("3_4717r")
+starting_map = ExtResource("2_fn3g3")
 
 [node name="MapContainer" type="Node2D" parent="." unique_id=293803169]
 
@@ -18,7 +17,7 @@ starting_map = ExtResource("3_4717r")
 
 [node name="HUD" parent="." unique_id=1605650295 instance=ExtResource("4_h5o24")]
 
-[node name="SpawnManager" type="Node" parent="." unique_id=109893301 node_paths=PackedStringArray("entities_container")]
+[node name="DuelGameMode" type="Node" parent="." unique_id=191803908]
 script = ExtResource("5_mmdvd")
-enemy_scenes = Array[PackedScene]([ExtResource("6_fn3g3")])
-entities_container = NodePath("../EntitiesContainer")
+player_scene = ExtResource("2_tcf2h")
+enemy_scene = ExtResource("6_fn3g3")

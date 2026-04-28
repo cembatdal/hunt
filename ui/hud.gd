@@ -5,6 +5,7 @@ extends CanvasLayer
 func _ready() -> void:
 	EventBus.entity_damaged.connect(_on_entity_damaged)
 	EventBus.player_died.connect(_on_player_died)
+	health_bar.value = 100.0
 
 func _on_entity_damaged(entity: Node, _amount: float, _source: Node) -> void:
 	if not entity is Player:

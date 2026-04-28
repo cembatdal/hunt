@@ -10,8 +10,9 @@ size = Vector2(6, 2)
 size = Vector2(6, 2)
 
 [node name="Bullet" type="Area2D" unique_id=874330212]
+z_index = 10
 collision_layer = 8
-collision_mask = 4
+collision_mask = 5
 script = ExtResource("1_apb1g")
 
 [node name="HitboxComponent" type="Area2D" parent="." unique_id=206851472]

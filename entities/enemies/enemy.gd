@@ -2,7 +2,7 @@ class_name Enemy
 extends Entity
 
 @export var data: EntityData
-@export var detection_range: float = 300.0
+@export var detection_range: float = 2000.0 
 @export var attack_range: float = 150.0
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
@@ -14,17 +14,22 @@ func _ready() -> void:
 	super._ready()
 	add_to_group("enemy")
 
-	# EntityData varsa health ve ismi buradan uygula
 	if data:
 		health_component.max_health = data.max_health
 		health_component.current_health = data.max_health
 		entity_name = data.entity_name
+		
+	# Hasar yediğini anlamak için HealthComponent'in sinyaline bağlanıyoruz
+	health_component.health_changed.connect(_on_health_changed)
 
-	await get_tree().process_frame
-	var players = get_tree().get_nodes_in_group("player")
-	if players.size() > 0:
-		target = players[0]
+# VURULMA EFEKTİ FONKSİYONU
+func _on_health_changed(_current: float, _max: float) -> void:
+	var sprite = $Sprite2D
+	if sprite:
+		# Tween ile sprite'ı anlık kırmızı yapıp 0.15 saniyede tekrar beyaza (orijinale) çeviriyoruz
+		var tween = create_tween()
+		sprite.modulate = Color.RED
+		tween.tween_property(sprite, "modulate", Color.WHITE, 0.15)
 
 func on_death() -> void:
-	GameManager.on_enemy_killed()
 	super.on_death()

@@ -10,6 +10,7 @@ extends Entity
 func _ready() -> void:
 	super._ready()
 	add_to_group("player")
+	health_component.health_changed.connect(_on_health_changed)
 
 func fire() -> void:
 	if not health_component.is_alive():
@@ -25,3 +26,10 @@ func fire() -> void:
 func on_death() -> void:
 	state_machine.transition_to("dead")
 	super.on_death()
+
+func _on_health_changed(_current: float, _max: float) -> void:
+	var sprite = $Sprite2D
+	if sprite:
+		var tween = create_tween()
+		sprite.modulate = Color.RED
+		tween.tween_property(sprite, "modulate", Color.WHITE, 0.15)
