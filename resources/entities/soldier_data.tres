@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EntityData" format=3 uid="uid://cwp22fxvctf0"]
+
+[ext_resource type="Script" uid="uid://chvvpnf3ntehg" path="res://resources/entity_data.gd" id="1_57jqv"]
+
+[resource]
+script = ExtResource("1_57jqv")
+max_health = 60.0
+move_speed = 180.0
+metadata/_custom_type_script = "uid://chvvpnf3ntehg"

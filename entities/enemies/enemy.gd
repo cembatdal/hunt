@@ -13,6 +13,13 @@ var target: Node = null
 func _ready() -> void:
 	super._ready()
 	add_to_group("enemy")
+
+	# EntityData varsa health ve ismi buradan uygula
+	if data:
+		health_component.max_health = data.max_health
+		health_component.current_health = data.max_health
+		entity_name = data.entity_name
+
 	await get_tree().process_frame
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:

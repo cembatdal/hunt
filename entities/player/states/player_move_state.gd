@@ -10,5 +10,3 @@ func physics_update(_delta: float) -> void:
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click"):
 		entity.fire()
-	if event.is_action_pressed("roll"):  # İleride
-		state_machine.transition_to("roll")

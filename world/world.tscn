@@ -18,6 +18,7 @@ starting_map = ExtResource("3_4717r")
 
 [node name="HUD" parent="." unique_id=1605650295 instance=ExtResource("4_h5o24")]
 
-[node name="SpawnManager" type="Node" parent="." unique_id=109893301]
+[node name="SpawnManager" type="Node" parent="." unique_id=109893301 node_paths=PackedStringArray("entities_container")]
 script = ExtResource("5_mmdvd")
 enemy_scenes = Array[PackedScene]([ExtResource("6_fn3g3")])
+entities_container = NodePath("../EntitiesContainer")

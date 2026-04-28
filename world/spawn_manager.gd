@@ -5,18 +5,27 @@ extends Node
 @export var spawn_interval: float = 5.0
 @export var max_enemies: int = 10
 @export var spawn_radius: float = 600.0
+@export var entities_container: Node2D  # Inspector'dan bağlanacak
 
 var _spawn_timer: float = 0.0
 var _player: Node = null
 
 func _ready() -> void:
 	await get_tree().process_frame
+	_find_player()
+
+func _find_player() -> void:
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		_player = players[0]
 
 func _process(delta: float) -> void:
-	if _player == null or enemy_scenes.is_empty():
+	if enemy_scenes.is_empty():
+		return
+
+	# Player ölmüşse referansı yenile veya dur
+	if not is_instance_valid(_player):
+		_find_player()
 		return
 
 	var current_enemies = get_tree().get_nodes_in_group("enemy").size()
@@ -29,12 +38,16 @@ func _process(delta: float) -> void:
 		_spawn_enemy()
 
 func _spawn_enemy() -> void:
+	if entities_container == null:
+		push_error("SpawnManager: entities_container Inspector'dan bağlanmamış!")
+		return
+
 	var angle = randf() * TAU
 	var offset = Vector2(cos(angle), sin(angle)) * spawn_radius
 	var spawn_pos = _player.global_position + offset
 
 	var scene = enemy_scenes.pick_random()
 	var enemy = scene.instantiate()
-	get_parent().get_node("EntitiesContainer").add_child(enemy)
+	entities_container.add_child(enemy)
 	enemy.global_position = spawn_pos
-	enemy.add_to_group("enemy")
+	# Grubu buradan eklemeye gerek yok — enemy.gd _ready()'de zaten ekliyor

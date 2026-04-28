@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cs5d6cktkew5p" path="res://entities/enemies/enemy.gd" id="1_gj3y3"]
 [ext_resource type="Texture2D" uid="uid://dqjsknisbm3fo" path="res://assets/kenney_top-down-shooter/PNG/Soldier 1/soldier1_stand.png" id="1_ipr6v"]
 [ext_resource type="Script" uid="uid://t5vwv76pw8td" path="res://components/health_component.gd" id="1_owq46"]
+[ext_resource type="Resource" uid="uid://cwp22fxvctf0" path="res://resources/entities/soldier_data.tres" id="2_56i32"]
 [ext_resource type="Script" uid="uid://bs0br6j2v66vj" path="res://components/hurtbox_component.gd" id="2_wqcwe"]
 [ext_resource type="Script" uid="uid://d2i8hvbno5b0" path="res://components/state_machine.gd" id="3_5lf1o"]
 [ext_resource type="Script" uid="uid://cqbroyttqcvnt" path="res://entities/enemies/states/enemy_idle_state.gd" id="4_w4yt1"]
@@ -17,6 +18,7 @@ radius = 17.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1366714868]
 script = ExtResource("1_gj3y3")
+data = ExtResource("2_56i32")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1672586702]
 texture = ExtResource("1_ipr6v")
@@ -31,6 +33,7 @@ script = ExtResource("1_owq46")
 collision_layer = 4
 collision_mask = 8
 script = ExtResource("2_wqcwe")
+health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=410054348]
 shape = SubResource("CircleShape2D_5lf1o")
