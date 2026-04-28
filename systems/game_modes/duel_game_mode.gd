@@ -17,7 +17,6 @@ func _spawn_fighters() -> void:
 		push_error("Harita bulunamadı!")
 		return
 		
-	# Haritadan Marker2D noktalarını alıyoruz
 	var p_spawn = map.get_node_or_null("PlayerSpawn")
 	var e_spawn = map.get_node_or_null("EnemySpawn")
 	
@@ -25,17 +24,20 @@ func _spawn_fighters() -> void:
 		push_error("Spawn noktaları haritada eksik!")
 		return
 
-	# Oyuncuyu Spawnla
+	# Oyuncuyu Spawnla (ÖNCE ADD_CHILD, SONRA POSITION)
 	player_instance = player_scene.instantiate()
-	player_instance.global_position = p_spawn.global_position
 	world_ref.entities_container.add_child(player_instance)
+	player_instance.global_position = p_spawn.global_position
 	
-	# Düşmanı Spawnla
+	# Düşmanı Spawnla (ÖNCE ADD_CHILD, SONRA POSITION)
 	enemy_instance = enemy_scene.instantiate()
-	enemy_instance.global_position = e_spawn.global_position
 	world_ref.entities_container.add_child(enemy_instance)
+	enemy_instance.global_position = e_spawn.global_position
 	
-	enemy_instance.target = player_instance
+	# Hedefi belirle
+	var ai_brain = enemy_instance.get_node_or_null("AIController")
+	if ai_brain:
+		ai_brain.target = player_instance
 
 func _on_entity_died(entity: Node) -> void:
 	if entity == player_instance:

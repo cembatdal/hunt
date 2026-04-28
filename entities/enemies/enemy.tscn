@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://c6ulbnlobgvcc"]
 
-[ext_resource type="Script" uid="uid://cs5d6cktkew5p" path="res://entities/enemies/enemy.gd" id="1_gj3y3"]
-[ext_resource type="Texture2D" uid="uid://dqjsknisbm3fo" path="res://assets/kenney_top-down-shooter/PNG/Soldier 1/soldier1_stand.png" id="1_ipr6v"]
+[ext_resource type="Script" uid="uid://xpkg3dyo1jlx" path="res://entities/base/actor.gd" id="1_56i32"]
 [ext_resource type="Script" uid="uid://t5vwv76pw8td" path="res://components/health_component.gd" id="1_owq46"]
 [ext_resource type="Resource" uid="uid://cwp22fxvctf0" path="res://resources/entities/soldier_data.tres" id="2_56i32"]
 [ext_resource type="Script" uid="uid://bs0br6j2v66vj" path="res://components/hurtbox_component.gd" id="2_wqcwe"]
 [ext_resource type="Script" uid="uid://d2i8hvbno5b0" path="res://components/state_machine.gd" id="3_5lf1o"]
-[ext_resource type="Script" uid="uid://cqbroyttqcvnt" path="res://entities/enemies/states/enemy_idle_state.gd" id="4_w4yt1"]
-[ext_resource type="Script" uid="uid://cg2t7f7sm35dq" path="res://entities/enemies/states/enemy_chase_state.gd" id="5_ipr6v"]
-[ext_resource type="Script" uid="uid://ddcrm8o7s5pri" path="res://entities/enemies/states/enemy_attack_state.gd" id="6_gj3y3"]
+[ext_resource type="Texture2D" uid="uid://fhtspn8bmiwi" path="res://assets/kenney_top-down-shooter/PNG/Soldier 1/soldier1_gun.png" id="3_56i32"]
+[ext_resource type="Script" uid="uid://ds6masum1sxef" path="res://entities/base/states/actor_move_state.gd" id="7_sb13e"]
+[ext_resource type="Script" uid="uid://bjpq85n8tee3o" path="res://entities/base/states/actor_dead_state.gd" id="8_3udgd"]
+[ext_resource type="Resource" uid="uid://bbnopjthlpu3n" path="res://resources/weapons/pistol_data.tres" id="10_3udgd"]
+[ext_resource type="PackedScene" uid="uid://bvmlx5wd3hwme" path="res://weapons/pistol.tscn" id="10_sb13e"]
+[ext_resource type="Script" uid="uid://sh8grc0eq2eb" path="res://components/controllers/ai_controller.gd" id="11_3udgd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gml8b"]
 radius = 17.0
@@ -17,11 +19,11 @@ radius = 17.0
 radius = 17.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1366714868]
-script = ExtResource("1_gj3y3")
+script = ExtResource("1_56i32")
 data = ExtResource("2_56i32")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1672586702]
-texture = ExtResource("1_ipr6v")
+texture = ExtResource("3_56i32")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=214464186]
 shape = SubResource("CircleShape2D_gml8b")
@@ -38,17 +40,25 @@ health_component = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=410054348]
 shape = SubResource("CircleShape2D_5lf1o")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1983545153]
-
 [node name="StateMachine" type="Node" parent="." unique_id=945779105]
 script = ExtResource("3_5lf1o")
-initial_state = NodePath("Idle")
+initial_state = NodePath("Move")
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=1684827239]
-script = ExtResource("4_w4yt1")
+[node name="Move" type="Node" parent="StateMachine" unique_id=1684827239]
+script = ExtResource("7_sb13e")
 
-[node name="Chase" type="Node" parent="StateMachine" unique_id=1184920677]
-script = ExtResource("5_ipr6v")
+[node name="Dead" type="Node" parent="StateMachine" unique_id=1184920677]
+script = ExtResource("8_3udgd")
 
-[node name="Attack" type="Node" parent="StateMachine" unique_id=700139464]
-script = ExtResource("6_gj3y3")
+[node name="WeaponHolder" type="Node2D" parent="." unique_id=2112107592]
+
+[node name="Pistol" parent="WeaponHolder" unique_id=883541640 instance=ExtResource("10_sb13e")]
+data = ExtResource("10_3udgd")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=470531085]
+position = Vector2(23, 9)
+
+[node name="AIController" type="Node" parent="." unique_id=1253119214]
+script = ExtResource("11_3udgd")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1983545153]

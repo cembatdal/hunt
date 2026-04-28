@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bod0wdiq6dj1h"]
 
-[ext_resource type="Script" uid="uid://cg3qlic7n3do8" path="res://entities/player/player.gd" id="1_pjt0s"]
+[ext_resource type="Script" uid="uid://xpkg3dyo1jlx" path="res://entities/base/actor.gd" id="1_wvtmh"]
 [ext_resource type="Texture2D" uid="uid://cq8fp827yp5f4" path="res://assets/kenney_top-down-shooter/PNG/Survivor 1/survivor1_machine.png" id="2_wa5vi"]
 [ext_resource type="Script" uid="uid://ua6bq6n2g6mg" path="res://entities/player/player_camera.gd" id="3_wa5vi"]
 [ext_resource type="Script" uid="uid://t5vwv76pw8td" path="res://components/health_component.gd" id="4_8fjmc"]
@@ -8,8 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bvmlx5wd3hwme" path="res://weapons/pistol.tscn" id="7_26q78"]
 [ext_resource type="Script" uid="uid://bs0br6j2v66vj" path="res://components/hurtbox_component.gd" id="7_qiwj3"]
 [ext_resource type="Script" uid="uid://d2i8hvbno5b0" path="res://components/state_machine.gd" id="8_26q78"]
-[ext_resource type="Script" uid="uid://c3e82lv1m227a" path="res://entities/player/states/player_move_state.gd" id="9_wvtmh"]
-[ext_resource type="Script" uid="uid://4aq2n46ku8mv" path="res://entities/player/states/player_dead_state.gd" id="10_7thud"]
+[ext_resource type="Script" uid="uid://ds6masum1sxef" path="res://entities/base/states/actor_move_state.gd" id="9_7thud"]
+[ext_resource type="Script" uid="uid://bjpq85n8tee3o" path="res://entities/base/states/actor_dead_state.gd" id="10_a1qjk"]
+[ext_resource type="Script" uid="uid://loxtgphbxbxo" path="res://components/controllers/player_controller.gd" id="11_7thud"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pjt0s"]
 radius = 17.0
@@ -18,7 +19,7 @@ radius = 17.0
 radius = 20.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1176821500]
-script = ExtResource("1_pjt0s")
+script = ExtResource("1_wvtmh")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=44826123]
 texture = ExtResource("2_wa5vi")
@@ -54,7 +55,10 @@ script = ExtResource("8_26q78")
 initial_state = NodePath("Move")
 
 [node name="Move" type="Node" parent="StateMachine" unique_id=1869264305]
-script = ExtResource("9_wvtmh")
+script = ExtResource("9_7thud")
 
 [node name="Dead" type="Node" parent="StateMachine" unique_id=2136919427]
-script = ExtResource("10_7thud")
+script = ExtResource("10_a1qjk")
+
+[node name="PlayerController" type="Node" parent="." unique_id=866233501]
+script = ExtResource("11_7thud")
