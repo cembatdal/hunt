@@ -34,3 +34,7 @@ func fire(muzzle_transform: Transform2D) -> void:
 		bullet.set_damage(data.damage, shooter)
 	else:
 		bullet.damage = data.damage
+		
+	if bullet.has_method("setup_collision"):
+		# Ateş edenin "enemy" grubunda olup olmadığını kontrol ediyoruz
+		bullet.setup_collision(shooter.is_in_group("enemy"))

@@ -44,3 +44,17 @@ func set_damage(value: float, shooter: Node = null) -> void:
 	if hitbox:
 		hitbox.damage = value
 		hitbox.owner_entity = shooter
+		
+func setup_collision(is_enemy: bool) -> void:
+	# Eğer düşmansa Layer 16 (enemy_bullets), Mask 3 (world(1) + player(2))
+	# Değilse (Oyuncuysa) Layer 8 (player_bullets), Mask 5 (world(1) + enemies(4))
+	var target_layer = 16 if is_enemy else 8
+	var target_mask = 3 if is_enemy else 5
+	
+	# Hem merminin kendisini hem de içindeki Hitbox'ı güncelliyoruz
+	collision_layer = target_layer
+	collision_mask = target_mask
+	
+	if hitbox:
+		hitbox.collision_layer = target_layer
+		hitbox.collision_mask = target_mask
