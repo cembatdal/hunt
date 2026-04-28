@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://c6ulbnlobgvcc"]
+
+[ext_resource type="Texture2D" uid="uid://dqjsknisbm3fo" path="res://assets/kenney_top-down-shooter/PNG/Soldier 1/soldier1_stand.png" id="1_ipr6v"]
+[ext_resource type="Script" uid="uid://t5vwv76pw8td" path="res://components/health_component.gd" id="1_owq46"]
+[ext_resource type="Script" uid="uid://bs0br6j2v66vj" path="res://components/hurtbox_component.gd" id="2_wqcwe"]
+[ext_resource type="Script" uid="uid://d2i8hvbno5b0" path="res://components/state_machine.gd" id="3_5lf1o"]
+[ext_resource type="Script" uid="uid://cqbroyttqcvnt" path="res://entities/enemies/states/enemy_idle_state.gd" id="4_w4yt1"]
+[ext_resource type="Script" uid="uid://cg2t7f7sm35dq" path="res://entities/enemies/states/enemy_chase_state.gd" id="5_ipr6v"]
+[ext_resource type="Script" uid="uid://ddcrm8o7s5pri" path="res://entities/enemies/states/enemy_attack_state.gd" id="6_gj3y3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gml8b"]
+radius = 17.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5lf1o"]
+radius = 17.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1366714868]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1672586702]
+texture = ExtResource("1_ipr6v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=214464186]
+shape = SubResource("CircleShape2D_gml8b")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1686124783]
+script = ExtResource("1_owq46")
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=2084202133]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("2_wqcwe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=410054348]
+shape = SubResource("CircleShape2D_5lf1o")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1983545153]
+
+[node name="StateMachine" type="Node" parent="." unique_id=945779105]
+script = ExtResource("3_5lf1o")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1684827239]
+script = ExtResource("4_w4yt1")
+
+[node name="Chase" type="Node" parent="StateMachine" unique_id=1184920677]
+script = ExtResource("5_ipr6v")
+
+[node name="Attack" type="Node" parent="StateMachine" unique_id=700139464]
+script = ExtResource("6_gj3y3")

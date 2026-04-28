@@ -17,7 +17,12 @@ func _draw() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is HurtboxComponent:
-		queue_free()
+		ObjectPool.return_object(self)
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	queue_free()
+	ObjectPool.return_object(self)
+
+func reset() -> void:
+	# Pool'a dönünce sıfırla
+	damage = 10.0
+	speed = 1500.0

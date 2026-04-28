@@ -550,6 +550,11 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/1 = SubResource("TileSetAtlasSource_h2yge")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_pbfmn"]
+vertices = PackedVector2Array(1122.0313, 29.890625, 1123.9688, 613, 756.0703, 613, 759.9297, 26.101563)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1132, 20, 750, 16, 746, 623, 1134, 623)])
+
 [node name="Node2D" type="Node2D" unique_id=1046869499]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=24540790]
@@ -558,3 +563,6 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAA
 tile_set = SubResource("TileSet_1bvp3")
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="." unique_id=1729147516]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1691927776]
+navigation_polygon = SubResource("NavigationPolygon_pbfmn")

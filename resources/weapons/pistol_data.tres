@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bbnopjthlpu3n"]
+
+[ext_resource type="Script" uid="uid://52h3y8br416d" path="res://resources/weapon_data.gd" id="1_4j0gt"]
+[ext_resource type="PackedScene" uid="uid://dqjf2fs6v1ed4" path="res://weapons/projectiles/bullet.tscn" id="1_12eg6"]
+[ext_resource type="AudioStream" uid="uid://by1s821axrdwo" path="res://assets/gunshot.wav" id="3_gqkpy"]
+
+[resource]
+script = ExtResource("1_4j0gt")
+fire_rate = 0.15
+bullet_scene = ExtResource("1_12eg6")
+shoot_sound = ExtResource("3_gqkpy")
+metadata/_custom_type_script = "uid://52h3y8br416d"

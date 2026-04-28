@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 EventBus="*uid://dpa8tbnnosjhc"
 GameManager="*uid://c6xffirdvhog7"
 AudioManager="*uid://reeu2x6pw32t"
+ObjectPool="*uid://1ydup8d15a6n"
 
 [display]
 
