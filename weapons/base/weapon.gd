@@ -3,6 +3,8 @@ extends Node2D
 
 @export var data: WeaponData
 
+var owner_actor: Actor = null
+
 var _can_fire: bool = true
 var _fire_timer: float = 0.0
 
@@ -27,8 +29,7 @@ func fire(muzzle_transform: Transform2D) -> void:
 	bullet.global_transform = muzzle_transform
 	bullet.speed = data.bullet_speed
 
-	# Silahın sahibini bul: Pistol -> WeaponHolder -> Player/Enemy
-	var shooter: Node = get_parent().get_parent()
+	var shooter: Node = owner_actor
 
 	if bullet.has_method("set_damage"):
 		bullet.set_damage(data.damage, shooter)
@@ -36,5 +37,4 @@ func fire(muzzle_transform: Transform2D) -> void:
 		bullet.damage = data.damage
 		
 	if bullet.has_method("setup_collision"):
-		# Ateş edenin "enemy" grubunda olup olmadığını kontrol ediyoruz
 		bullet.setup_collision(shooter.is_in_group("enemy"))

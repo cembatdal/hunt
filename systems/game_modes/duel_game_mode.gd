@@ -40,6 +40,8 @@ func _spawn_fighters() -> void:
 		ai_brain.target = player_instance
 
 func _on_entity_died(entity: Node) -> void:
+	if not is_instance_valid(entity):
+		return
 	if entity == player_instance:
 		print("Düşman Kazandı!")
 		match_finished.emit("Enemy")

@@ -21,6 +21,7 @@ EventBus="*uid://dpa8tbnnosjhc"
 GameManager="*uid://c6xffirdvhog7"
 AudioManager="*uid://reeu2x6pw32t"
 ObjectPool="*uid://1ydup8d15a6n"
+CollisionLayers="*uid://c7qu4v6je1mr7"
 
 [display]
 

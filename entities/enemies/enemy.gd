@@ -2,7 +2,6 @@ class_name Enemy
 extends Actor
 
 @export var data: EntityData
-@export var speed: float = 200.0
 
 func _ready() -> void:
 	super._ready()

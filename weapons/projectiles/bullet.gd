@@ -47,20 +47,12 @@ func set_damage(value: float, shooter: Node = null) -> void:
 		
 func setup_collision(is_enemy: bool) -> void:
 	
-	# Collision Layer Haritası (project.godot ile senkron):
-	# Layer 1  (bit mask 1)  : world
-	# Layer 2  (bit mask 2)  : player
-	# Layer 3  (bit mask 4)  : enemies
-	# Layer 4  (bit mask 8)  : player_bullets
-	# Layer 5  (bit mask 16) : enemy_bullets
-	
-	var target_layer = 16 if is_enemy else 8
-	var target_mask = 3 if is_enemy else 5
-	
-	# Hem merminin kendisini hem de içindeki Hitbox'ı güncelliyoruz
+	var target_layer = CollisionLayers.ENEMY_BULLETS if is_enemy else CollisionLayers.PLAYER_BULLETS
+	var target_mask  = CollisionLayers.ENEMY_BULLET_MASK if is_enemy else CollisionLayers.PLAYER_BULLET_MASK
+
 	collision_layer = target_layer
-	collision_mask = target_mask
-	
+	collision_mask  = target_mask
+
 	if hitbox:
 		hitbox.collision_layer = target_layer
-		hitbox.collision_mask = target_mask
+		hitbox.collision_mask  = target_mask

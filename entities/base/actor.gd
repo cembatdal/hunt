@@ -1,6 +1,8 @@
 class_name Actor
 extends Entity
 
+@export var speed: float = 200.0
+
 # Kontrolcünün (Controller) dolduracağı değişkenler
 var move_direction: Vector2 = Vector2.ZERO
 var aim_position: Vector2 = Vector2.ZERO
@@ -12,6 +14,7 @@ var wants_to_shoot: bool = false
 
 func _ready() -> void:
 	super._ready()
+	_register_weapons()
 
 func fire() -> void:
 	if not health_component.is_alive():
@@ -27,3 +30,8 @@ func fire() -> void:
 func on_death() -> void:
 	state_machine.transition_to("dead")
 	# queue_free yok — dead state halleder
+
+func _register_weapons() -> void:
+	for weapon in weapon_holder.get_children():
+		if weapon is Weapon:
+			weapon.owner_actor = self
