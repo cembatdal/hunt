@@ -15,11 +15,12 @@ func _process(delta: float) -> void:
 			_can_fire = true
 			_fire_timer = 0.0
 
-func try_fire(muzzle_transform: Transform2D) -> void:
+func try_fire(muzzle_transform: Transform2D) -> bool:
 	if not _can_fire or data == null:
-		return
+		return false
 	_can_fire = false
 	fire(muzzle_transform)
+	return true
 
 func fire(muzzle_transform: Transform2D) -> void:
 	if data.bullet_scene == null:

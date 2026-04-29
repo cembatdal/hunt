@@ -23,8 +23,8 @@ func fire() -> void:
 		return
 	var weapon = weapon_holder.get_child(0)
 	if weapon is Weapon:
-		weapon.try_fire(muzzle.global_transform)
-		if weapon.data and weapon.data.shoot_sound:
+		var is_weapon_fired = weapon.try_fire(muzzle.global_transform)
+		if is_weapon_fired and weapon.data and weapon.data.shoot_sound:
 			AudioManager.play_sfx(weapon.data.shoot_sound, 0.8, 1.2)
 
 func on_death() -> void:

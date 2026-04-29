@@ -9,3 +9,4 @@ extends Resource
 @export var shoot_sound: AudioStream
 @export var muzzle_flash_scene: PackedScene  # İleride
 @export var icon: Texture2D                  # UI için
+@export var is_automatic: bool = false

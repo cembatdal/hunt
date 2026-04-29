@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cq8fp827yp5f4" path="res://assets/kenney_top-down-shooter/PNG/Survivor 1/survivor1_machine.png" id="2_wa5vi"]
 [ext_resource type="Script" uid="uid://ua6bq6n2g6mg" path="res://entities/player/player_camera.gd" id="3_wa5vi"]
 [ext_resource type="Script" uid="uid://t5vwv76pw8td" path="res://components/health_component.gd" id="4_8fjmc"]
-[ext_resource type="Resource" uid="uid://bbnopjthlpu3n" path="res://resources/weapons/pistol_data.tres" id="6_qiwj3"]
+[ext_resource type="Resource" uid="uid://caasufbbwkdej" path="res://resources/weapons/bolt_action_rifle_data.tres" id="6_7thud"]
 [ext_resource type="PackedScene" uid="uid://bvmlx5wd3hwme" path="res://weapons/pistol.tscn" id="7_26q78"]
 [ext_resource type="Script" uid="uid://bs0br6j2v66vj" path="res://components/hurtbox_component.gd" id="7_qiwj3"]
 [ext_resource type="Script" uid="uid://d2i8hvbno5b0" path="res://components/state_machine.gd" id="8_26q78"]
@@ -42,7 +42,7 @@ shape = SubResource("CircleShape2D_8fjmc")
 [node name="WeaponHolder" type="Node2D" parent="." unique_id=200972790]
 
 [node name="Weapon" parent="WeaponHolder" unique_id=883541640 instance=ExtResource("7_26q78")]
-data = ExtResource("6_qiwj3")
+data = ExtResource("6_7thud")
 
 [node name="Muzzle" type="Marker2D" parent="." unique_id=521396417]
 position = Vector2(23, 9)
