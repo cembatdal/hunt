@@ -46,8 +46,14 @@ func set_damage(value: float, shooter: Node = null) -> void:
 		hitbox.owner_entity = shooter
 		
 func setup_collision(is_enemy: bool) -> void:
-	# Eğer düşmansa Layer 16 (enemy_bullets), Mask 3 (world(1) + player(2))
-	# Değilse (Oyuncuysa) Layer 8 (player_bullets), Mask 5 (world(1) + enemies(4))
+	
+	# Collision Layer Haritası (project.godot ile senkron):
+	# Layer 1  (bit mask 1)  : world
+	# Layer 2  (bit mask 2)  : player
+	# Layer 3  (bit mask 4)  : enemies
+	# Layer 4  (bit mask 8)  : player_bullets
+	# Layer 5  (bit mask 16) : enemy_bullets
+	
 	var target_layer = 16 if is_enemy else 8
 	var target_mask = 3 if is_enemy else 5
 	

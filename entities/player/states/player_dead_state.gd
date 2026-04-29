@@ -2,7 +2,8 @@ class_name PlayerDeadState
 extends State
 
 func enter() -> void:
-	EventBus.player_died.emit()
 	entity.velocity = Vector2.ZERO
-	# Animasyon tetiklenebilir
-	# entity.get_node("AnimationPlayer").play("death")
+	entity.set_process(false)
+	entity.set_physics_process(false)
+	EventBus.player_died.emit()
+	# Player queue_free olmaz — Game Over ekranı açılacak (ileride)

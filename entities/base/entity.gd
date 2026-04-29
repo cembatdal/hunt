@@ -9,4 +9,4 @@ func _ready() -> void:
 	health_component.died.connect(on_death)
 
 func on_death() -> void:
-	queue_free()
+	pass

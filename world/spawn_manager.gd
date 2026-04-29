@@ -50,4 +50,7 @@ func _spawn_enemy() -> void:
 	var enemy = scene.instantiate()
 	entities_container.add_child(enemy)
 	enemy.global_position = spawn_pos
-	# Grubu buradan eklemeye gerek yok — enemy.gd _ready()'de zaten ekliyor
+	
+	var ai = enemy.get_node_or_null("AIController")
+	if ai and _player:
+		ai.target = _player

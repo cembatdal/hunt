@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://h3a6fywu4o80"]
+
+[ext_resource type="Script" uid="uid://i7rw608orrsc" path="res://systems/game_modes/duel_game_mode.gd" id="1_iof8q"]
+[ext_resource type="PackedScene" uid="uid://bod0wdiq6dj1h" path="res://entities/player/player.tscn" id="2_057wy"]
+[ext_resource type="PackedScene" uid="uid://c6ulbnlobgvcc" path="res://entities/enemies/enemy.tscn" id="3_rxxx0"]
+
+[node name="DuelGameMode" type="Node" unique_id=2002096961]
+script = ExtResource("1_iof8q")
+player_scene = ExtResource("2_057wy")
+enemy_scene = ExtResource("3_rxxx0")
